@@ -26,4 +26,10 @@ public class S3Controller {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fileName= " + fileName)
                 .body(data);
     }
+
+    @DeleteMapping("/delete/{fileName}")
+    public ResponseEntity<String> delete(@PathVariable String fileName) throws Exception {
+        s3Service.deleteFile(fileName);
+        return ResponseEntity.ok("File Deleted Successfully...");
+    }
 }
